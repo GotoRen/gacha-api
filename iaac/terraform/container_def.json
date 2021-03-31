@@ -1,0 +1,44 @@
+[
+    {
+        "name": "${app}",
+        "image": "${ecr_url}",
+        "cpu": 10,
+        "memory": 256,
+        "essential": true,
+        "portMappings": [
+            {
+                "containerPort": ${port
+                },
+                "protocol": "tcp"
+            }
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "${log_group_name}",
+                "awslogs-region": "ap-northeast-1",
+                "awslogs-stream-prefix": "/"
+            }
+        },
+        "environment": [
+            {
+                "name": "DB_DATABASE",
+                "value": "cta"
+            },
+            {
+                "name": "DB_HOST",
+                "value": "${rds_endpoint}"
+            },
+            {
+                "name": "DB_USER",
+                "value": "tetsuya"
+            }
+        ],
+        "secrets": [
+            {
+                "name": "DB_PASSWORD",
+                "valueFrom": "${rds_master_password}"
+            }
+        ]
+    }
+]
