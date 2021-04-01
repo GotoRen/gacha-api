@@ -1,4 +1,6 @@
-# Created by .ignore support plugin (hsz.mobi)
+### General
+.DS_Store
+
 ### Go template
 # Binaries for programs and plugins
 *.exe
@@ -13,15 +15,11 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 .idea
-mysql/data
+api/mysql/data
 # Dependency directories (remove the comment below to include it)
 # vendor/
-
 tmp/
 
-# General
-.DS_Store
-
-# ENV FILES
+### ENV FILES
 .env
 .env.db
