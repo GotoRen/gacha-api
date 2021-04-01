@@ -16,14 +16,14 @@
 ## 🌱 API EndPoint
 ```
 ### /user/create
-$ curl -X POST "Content-Type: application/json" -d '{"name": "fumifumi"}'  localhost:8080/user/create
+$ curl -X POST "Content-Type: application/json" -d '{"name": "KobaFumi"}'  localhost:8080/user/create
 
 ### /user/get
 $ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" -d '{"id": "1"}' localhost:8080/user/get
 $ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/user/get
 
 ### /user/update
-$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" -d '{"name" : "hogehoge"}' localhost:8080/user/update
+$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" -d '{"name" : "KobayashiFumiaki"}' localhost:8080/user/update
 
 ### /gacha/draw
 $ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" -d '{"count": 10}' localhost:8080/gacha/draw
