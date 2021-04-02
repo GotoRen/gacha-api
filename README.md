@@ -1,6 +1,6 @@
 # gacha-api
 ## 💡 Overview
-This repository is TechTrain mission Golang GachaAPI<br>
+This repository is TechTrain mission Golang GachaAPI.<br>
 It can be run locally with docker-compose.<br>
 The production will be operated using AWS ECS, AWS RDS (Aurora), etc...
 
