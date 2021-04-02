@@ -23,7 +23,7 @@ $ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" -d '{"id": "
 $ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/user/get
 
 ### /user/update
-$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" -d '{"name" : "KobayashiFumiaki"}' localhost:8080/user/update
+$ curl -X PUT -H "x-token: abc" -H "Content-Type: application/json" -d '{"name" : "KobayashiFumiaki"}' localhost:8080/user/update
 
 ### /gacha/draw
 $ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" -d '{"count": 10}' localhost:8080/gacha/draw
