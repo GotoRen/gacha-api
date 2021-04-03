@@ -46,20 +46,20 @@ $ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:80
 ```
 
 ## 🦆 Init DB env
-- `.env`
-  ```
-  DB_HOST=db
-  DB_USER=user
-  DB_PASSWORD=password
-  DB_DATABASE=go_db
-  ```
-- `.env.db`
-  ```
-  MYSQL_ROOT_PASSWORD=password
-  MYSQL_DATABASE=go_db
-  MYSQL_USER=user
-  MYSQL_PASSWORD=password
-  ```
+`.env`
+```
+DB_HOST=db
+DB_USER=user
+DB_PASSWORD=password
+DB_DATABASE=go_db
+```
+`.env.db`
+```
+MYSQL_ROOT_PASSWORD=password
+MYSQL_DATABASE=go_db
+MYSQL_USER=user
+MYSQL_PASSWORD=password
+```
 
 ## 📝 make-command specifications
 ```
