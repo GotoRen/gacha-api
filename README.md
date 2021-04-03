@@ -6,14 +6,14 @@ The production will be operated using AWS ECS, AWS RDS (Aurora), etc...
 
 ## 🚀 Running
 1. You run the following command.
-    ```
+    ```zsh
     << Env files. >>
     ### api/app
     $ cp .env{.sample,}
     ### api/db
     $ cp .env.db{.sample,}
 
-    << Node.js >>
+    << Nuxt.js >>
     ### ui/gacha
     $ npm install
     $ npm run build
@@ -22,7 +22,8 @@ The production will be operated using AWS ECS, AWS RDS (Aurora), etc...
 2. Please rewrite ".env" and ".env.db" as needed.
 
 ## 🌱 API EndPoint
-```
+- `bash`
+```bash
 ### /user/create
 $ curl -X POST "Content-Type: application/json" -d '{"name": "KobaFumi"}'  localhost:8080/user/create
 
@@ -34,7 +35,25 @@ $ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:80
 $ curl -X PUT -H "x-token: abc" -H "Content-Type: application/json" -d '{"name" : "KobayashiFumiaki"}' localhost:8080/user/update
 
 ### /gacha/draw
-$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" -d '{"count": 10}' localhost:8080/gacha/draw
+$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/gacha/draw?count=10
+
+###/character/list
+$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/character/list
+```
+- `zsh & fish`
+```zsh
+### /user/create
+$ curl -X POST "Content-Type: application/json" -d '{"name": "KobaFumi"}'  localhost:8080/user/create
+
+### /user/get
+$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" -d '{"id": "1"}' localhost:8080/user/get
+$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/user/get
+
+### /user/update
+$ curl -X PUT -H "x-token: abc" -H "Content-Type: application/json" -d '{"name" : "KobayashiFumiaki"}' localhost:8080/user/update
+
+### /gacha/draw
+$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/gacha/draw\?count=10
 
 ###/character/list
 $ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/character/list
