@@ -12,6 +12,12 @@ The production will be operated using AWS ECS, AWS RDS (Aurora), etc...
     $ cp .env{.sample,}
     ### api/db
     $ cp .env.db{.sample,}
+
+    << Node.js >>
+    ### ui/gacha
+    $ npm install
+    $ npm run build
+    $ npm run start
     ```
 2. Please rewrite ".env" and ".env.db" as needed.
 
