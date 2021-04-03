@@ -6,7 +6,7 @@ The production will be operated using AWS ECS, AWS RDS (Aurora), etc...
 
 ## 🚀 Running
 You run the following command.
-### Front end
+### Frontend
 ```
 << Nuxt.js >>
 ### ui/gacha
@@ -14,7 +14,7 @@ $ npm install
 $ npm run build
 $ npm run start
 ```
-### Back end
+### Backend
 ```
 << Env files. >>
 ### api/app
