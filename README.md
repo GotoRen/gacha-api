@@ -7,21 +7,21 @@ The production will be operated using AWS ECS, AWS RDS (Aurora), etc...
 ## 🚀 Running
 You run the following command.
 ### Front end
-    ```
+```
     << Nuxt.js >>
     ### ui/gacha
     $ npm install
     $ npm run build
     $ npm run start
-    ```
+```
 ### Back end
-    ```
+```
     << Env files. >>
     ### api/app
     $ cp .env{.sample,}
     ### api/db
     $ cp .env.db{.sample,}
-    ```
+```
     Please rewrite ".env" and ".env.db" as needed.
 
 
