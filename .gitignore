@@ -17,9 +17,14 @@
 .idea
 api/mysql/data
 # Dependency directories (remove the comment below to include it)
+
 # vendor/
 tmp/
 
 ### ENV FILES
 .env
 .env.db
+
+### Node.js
+node_modules/
+.nuxt/
