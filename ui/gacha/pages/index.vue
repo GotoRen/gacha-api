@@ -13,7 +13,7 @@
 export default {
   data() {
     return {
-      result:"hello",
+      result:"helloworld",
       num:10
     }
   },
