@@ -26,5 +26,5 @@ tmp/
 .env.db
 
 ### Node.js
-node_modules/
+ui/gacha/node_modules/
 ui/gacha/.nuxt/
