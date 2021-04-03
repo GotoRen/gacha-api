@@ -27,4 +27,4 @@ tmp/
 
 ### Node.js
 node_modules/
-.nuxt/
+ui/gacha/.nuxt/
