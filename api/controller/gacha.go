@@ -8,6 +8,7 @@ import (
 	"math/rand"
 	"net/http"
 	"time"
+	"strconv"
 
 	"github.com/fumist23/game-api/database"
 	"github.com/fumist23/game-api/model"
@@ -90,19 +91,26 @@ func DrawGacha(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	token := r.Header.Get("x-token")
 
-	body := r.Body
-	defer body.Close()
+	// body := r.Body
 
+	// defer body.Close()
+	
 	// ガチャを引く回数
-	var gachaDrawRequest model.GachaDrawRequest
-	if err := json.NewDecoder(body).Decode(&gachaDrawRequest); err != nil {
-		log.Printf("failed to decode json: %v", err)
+	// var gachaDrawRequest model.GachaDrawRequest
+	// if err := json.NewDecoder(body).Decode(&gachaDrawRequest); err != nil {
+	// 	log.Printf("failed to decode json: %v", err)
+	// 	w.WriteHeader(http.StatusInternalServerError)
+	// }
+
+	// log.Println("gachaDrawRequest", gachaDrawRequest)
+
+	// count := gachaDrawRequest.Count
+
+	count, err := strconv.Atoi(r.FormValue("count"))
+	if err != nil {
+		log.Printf("failed to getCount: %v", err)
 		w.WriteHeader(http.StatusInternalServerError)
 	}
-
-	log.Println("gachaDrawRequest", gachaDrawRequest)
-
-	count := gachaDrawRequest.Count
 
 	if count <= 0 {
 		log.Printf("time must be more than 1")
@@ -130,7 +138,7 @@ func DrawGacha(w http.ResponseWriter, r *http.Request) {
 	// 取得したキャラクターをuserCharacterテーブルに入れる
 	if err := database.PostUserCharacters(ctx, selectedCharacters, user.Id); err != nil {
 		log.Printf("failed to PostUserCharacters: %v", err)
-		w.WriteHeader(http.StatusInternalServerError)
+		// w.WriteHeader(http.StatusInternalServerError)
 	}
 
 	log.Println("database.PostUserCharacters", err)
