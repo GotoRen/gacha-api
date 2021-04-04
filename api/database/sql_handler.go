@@ -30,7 +30,6 @@ func VerifyToken(ctx context.Context, token string) bool {
 }
 
 // tokenを受け取って該当するuserのnameを取り出す
-
 func GetUser(ctx context.Context, token string) (model.User, error) {
 	row := DB.QueryRowContext(ctx, "SELECT id, name FROM users WHERE token=?", token)
 	var user model.User
@@ -137,7 +136,7 @@ func GetUserCharactersByID(ctx context.Context, userId int) ([]model.UserCharact
 			return nil, err
 		}
 		userCharacters = append(userCharacters, userCharacter)
-		log.Printf("userCharacters🔥🔥🔥: %v", userCharacters)
+		log.Printf("userCharacters: %v", userCharacters)
 	}
 
 	if err := rows.Err(); err != nil {
