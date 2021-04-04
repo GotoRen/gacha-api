@@ -39,7 +39,7 @@ $ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:80
 $ curl -X PUT -H "x-token: abc" -H "Content-Type: application/json" -d '{"name" : "KobayashiFumiaki"}' localhost:8080/user/update
 
 ### /gacha/draw
-curl -X GET -H "x-token: abc" -H "Content-Type: application/json" 'localhost:8080/gacha/draw?count=10'
+$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" 'localhost:8080/gacha/draw?count=10'
 
 ###/character/list
 $ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/character/list
@@ -97,3 +97,7 @@ $ docker-compose logs -f app
 # make logs/db
 $ docker-compose logs -f db
 ```
+
+## DevOps Architecture
+![architecture](https://user-images.githubusercontent.com/63791288/113522998-0c822200-95e0-11eb-851a-ee61c69076f1.png)
+
