@@ -98,6 +98,6 @@ $ docker-compose logs -f app
 $ docker-compose logs -f db
 ```
 
-## DevOps Architecture
+## 🚧 DevOps Architecture
 ![architecture](https://user-images.githubusercontent.com/63791288/113522998-0c822200-95e0-11eb-851a-ee61c69076f1.png)
 
