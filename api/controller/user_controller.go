@@ -19,6 +19,12 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	body := r.Body
 	defer body.Close()
 
+	if r.Method != http.MethodPost {
+		log.Printf("only POST methods are permitted")
+        w.WriteHeader(http.StatusMethodNotAllowed)
+        return
+    }
+
 	var userCreateRequest model.UserCreateRequest
 	if err := json.NewDecoder(body).Decode(&userCreateRequest); err != nil {
 		log.Printf("failed to decode userCreateRequest: %v", err)
@@ -64,6 +70,12 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 	body := r.Body
 	defer body.Close()
 
+	if r.Method != http.MethodPost {
+		log.Printf("only POST methods are permitted")
+        w.WriteHeader(http.StatusMethodNotAllowed)
+        return
+    }
+
 	var userLoginRequest model.UserLoginRequest
 	if err := json.NewDecoder(body).Decode(&userLoginRequest); err != nil {
 		log.Printf("failed to decode userLoginRequest: %v", err)
@@ -95,6 +107,12 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 func GetUser(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 
+	if r.Method != http.MethodGet {
+		log.Printf("only GET methods are permitted")
+        w.WriteHeader(http.StatusMethodNotAllowed)
+        return
+    }
+
 	token := r.Header.Get("x-token")
 	if token == "" {
 		log.Println("token must be included in header")
@@ -122,6 +140,12 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 // x-tokenからtokenを取り出して該当するuserを検証し、受け取ったnameを更新してDB更新して返す
 func UpdateUser(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
+
+	if r.Method != http.MethodPut {
+		log.Printf("only PUT methods are permitted")
+        w.WriteHeader(http.StatusMethodNotAllowed)
+        return
+    }
 
 	token := r.Header.Get("x-token")
 	isValidToken := database.VerifyToken(ctx, token)
