@@ -92,7 +92,6 @@ func DrawGacha(w http.ResponseWriter, r *http.Request) {
 	token := r.Header.Get("x-token")
 
 	// body := r.Body
-
 	// defer body.Close()
 	
 	// ガチャを引く回数

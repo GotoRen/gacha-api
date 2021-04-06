@@ -56,6 +56,40 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 }
 
+// /user/loginに対するハンドラ
+// bodyのidとnameから該当するuserのtokenを取得して返す
+func LoginUser(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+
+	body := r.Body
+	defer body.Close()
+
+	var userLoginRequest model.UserLoginRequest
+	if err := json.NewDecoder(body).Decode(&userLoginRequest); err != nil {
+		log.Printf("failed to decode userLoginRequest: %v", err)
+		w.WriteHeader(http.StatusInternalServerError)
+	}
+
+	id := userLoginRequest.Id
+	name := userLoginRequest.Name
+
+	user, err := database.GetToken(ctx, id, name)
+
+	if err != nil {
+		log.Printf("error occurred in database.GetToken: %v", err)
+		w.WriteHeader(http.StatusInternalServerError)
+	}
+
+	token := user.Token
+
+	if err := json.NewEncoder(w).Encode(token); err != nil {
+		log.Printf("failed to encode token to json: %v", err)
+		w.WriteHeader(http.StatusInternalServerError)
+	}
+
+	w.WriteHeader(http.StatusOK)
+}
+
 // /user/getに対するハンドラ
 // headerのx-tokenからtokenを取り出してDBからfetchして該当するuserのnameを取得して返す
 func GetUser(w http.ResponseWriter, r *http.Request) {
