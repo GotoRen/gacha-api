@@ -31,6 +31,9 @@ Please rewrite ".env" and ".env.db" as needed.
 ### /user/create
 $ curl -X POST "Content-Type: application/json" -d '{"name": "KobaFumi"}'  localhost:8080/user/create
 
+### /user/login
+$ curl -X POST -H "Content-Type: application/json" -d '{"id":1, "name":"fumifumi"}' localhost:8080/user/login
+
 ### /user/get
 $ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" -d '{"id": "1"}' localhost:8080/user/get
 $ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/user/get

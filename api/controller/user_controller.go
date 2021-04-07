@@ -19,6 +19,12 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	body := r.Body
 	defer body.Close()
 
+	if r.Method != http.MethodPost {
+		log.Printf("only POST methods are permitted")
+        w.WriteHeader(http.StatusMethodNotAllowed)
+        return
+    }
+
 	var userCreateRequest model.UserCreateRequest
 	if err := json.NewDecoder(body).Decode(&userCreateRequest); err != nil {
 		log.Printf("failed to decode userCreateRequest: %v", err)
@@ -56,10 +62,56 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 }
 
+// /user/loginに対するハンドラ
+// bodyのidとnameから該当するuserのtokenを取得して返す
+func LoginUser(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+
+	body := r.Body
+	defer body.Close()
+
+	if r.Method != http.MethodPost {
+		log.Printf("only POST methods are permitted")
+        w.WriteHeader(http.StatusMethodNotAllowed)
+        return
+    }
+
+	var userLoginRequest model.UserLoginRequest
+	if err := json.NewDecoder(body).Decode(&userLoginRequest); err != nil {
+		log.Printf("failed to decode userLoginRequest: %v", err)
+		w.WriteHeader(http.StatusInternalServerError)
+	}
+
+	id := userLoginRequest.Id
+	name := userLoginRequest.Name
+
+	user, err := database.GetToken(ctx, id, name)
+
+	if err != nil {
+		log.Printf("error occurred in database.GetToken: %v", err)
+		w.WriteHeader(http.StatusInternalServerError)
+	}
+
+	token := user.Token
+
+	if err := json.NewEncoder(w).Encode(token); err != nil {
+		log.Printf("failed to encode token to json: %v", err)
+		w.WriteHeader(http.StatusInternalServerError)
+	}
+
+	w.WriteHeader(http.StatusOK)
+}
+
 // /user/getに対するハンドラ
 // headerのx-tokenからtokenを取り出してDBからfetchして該当するuserのnameを取得して返す
 func GetUser(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
+
+	if r.Method != http.MethodGet {
+		log.Printf("only GET methods are permitted")
+        w.WriteHeader(http.StatusMethodNotAllowed)
+        return
+    }
 
 	token := r.Header.Get("x-token")
 	if token == "" {
@@ -88,6 +140,12 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 // x-tokenからtokenを取り出して該当するuserを検証し、受け取ったnameを更新してDB更新して返す
 func UpdateUser(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
+
+	if r.Method != http.MethodPut {
+		log.Printf("only PUT methods are permitted")
+        w.WriteHeader(http.StatusMethodNotAllowed)
+        return
+    }
 
 	token := r.Header.Get("x-token")
 	isValidToken := database.VerifyToken(ctx, token)

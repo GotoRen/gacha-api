@@ -14,6 +14,11 @@ type UserCreateResponse struct {
 	Token string
 }
 
+type UserLoginRequest struct {
+	Id   int    `json:"id"`
+	Name string `json:"name"`
+}
+
 type UserGetResponse struct {
 	Name string
 }

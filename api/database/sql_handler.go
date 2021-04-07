@@ -7,7 +7,7 @@ import (
 	"github.com/fumist23/game-api/model"
 )
 
-// nameをtokenを受け取って保存する
+// nameとtokenを受け取って保存する
 func CreateUser(ctx context.Context, name string, token string) error {
 	_, err := DB.QueryContext(ctx, "INSERT INTO users(name, token) VALUES(?, ?)", name, token)
 	if err != nil {
@@ -16,6 +16,18 @@ func CreateUser(ctx context.Context, name string, token string) error {
 	}
 
 	return nil
+}
+
+// idとnameを受け取って該当するuserのtokenを取り出す
+func GetToken(ctx context.Context, id int, name string) (model.User, error) {
+	row := DB.QueryRowContext(ctx, "SELECT token FROM users WHERE id=? AND name=?", id, name) 
+	var user model.User
+	if err := row.Scan(&user.Token); err != nil {
+		log.Print("failed to get user token from database")
+		return user, err
+	}
+
+	return user, nil
 }
 
 // tokenが存在するかチェックする
