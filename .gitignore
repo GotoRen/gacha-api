@@ -28,3 +28,7 @@ tmp/
 ### Node.js
 ui/gacha/node_modules/
 ui/gacha/.nuxt/
+
+### JupyterNotebook
+.Trash-0/
+.ipynb_checkpoints/
