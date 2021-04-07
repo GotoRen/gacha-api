@@ -34,7 +34,7 @@ def lambda_handler():
    jst_today = get_jst_today()
    from_ts = get_from_timestamp(jst_today)
    to_ts = get_to_timestamp(from_ts)
-   client = boto3.client('logs', aws_access_key_id="AKIA6D57QWWUOZHRQEWP", aws_secret_access_key="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", region_name="ap-northeast-1")
+   client = boto3.client('logs', aws_access_key_id="[AWS_ACCESS_KEY_ID]", aws_secret_access_key="[AWS_SECRET_ACCESS_KEY]", region_name="ap-northeast-1")
    
    response = client.create_export_task(
        logGroupName      = target_loggroup_name,
