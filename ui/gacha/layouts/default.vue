@@ -132,7 +132,7 @@
           </v-card-text>
           <v-card-actions>
             <v-btn
-              color="blue darken-1"
+              color="red darken-1"
               text
               @click="userDialog = false;logout();"
             >
@@ -201,6 +201,23 @@ export default {
       }).then(response => {
         this.token = response;
         this.$store.commit('changeLogin', true);
+        this.$store.commit('changeUserData', {
+          id: this.id,
+          username: this.username,
+          token: this.token
+        });
+        console.log(this.token);
+      });
+    },
+    async updateUserName() {
+      await this.$axios.$put('http://localhost:8080/user/update',{
+        'name':this.username
+      },{
+        headers: {
+          'x-token':this.$store.state.token,
+          'Content-Type':'application/json'
+        }
+      }).then(response => {
         this.$store.commit('changeUserData', {
           id: this.id,
           username: this.username,
