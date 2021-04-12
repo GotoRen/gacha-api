@@ -21,7 +21,7 @@
         </v-slider>
         <v-btn @click="sendGachaRequest">ガチャを引く</v-btn>
         <ul>
-          <li v-for="item in result">
+          <li v-for="(item, index) in result" :key="index">
             {{ item.reality }} {{ item.name }}
           </li>
         </ul>
