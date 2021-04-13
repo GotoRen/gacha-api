@@ -79,13 +79,13 @@ $ docker-compose up -d
 # make down
 $ docker-compose down
 
-# make app
+# make app/api
 $ docker-compose exec app sh
 
-# make db 
+# make app/db 
 $ docker-compose exec db bash
 
-# make db/mysql
+# make mysql
 $ docker-compose exec db bash
 > mysql -u user -ppassword
 
