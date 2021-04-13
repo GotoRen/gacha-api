@@ -43,7 +43,7 @@ $ curl -X PUT -H "x-token: abc" -H "Content-Type: application/json" -d '{"name" 
 ### /gacha/draw
 $ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" 'localhost:8080/gacha/draw?count=10'
 
-###/character/list
+### /character/list
 $ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/character/list
 ```
 
@@ -98,6 +98,27 @@ $ docker-compose logs -f app
 
 # make logs/db
 $ docker-compose logs -f db
+```
+
+## 🍬 Created
+```
+### 確認
+=== * 起動するDockerコンテナ * ===
+$ docker ps
+CONTAINER ID   IMAGE                    COMMAND                  CREATED         STATUS         PORTS                                NAMES
+2c03853063ec   gacha-api/db:gacha-v1    "docker-entrypoint.s…"   7 seconds ago   Up 1 second    33060/tcp, 0.0.0.0:13306->3306/tcp   gacha-api_db
+cfc8a77dd2de   gacha-api/app:gacha-v1   "./main"                 7 seconds ago   Up 3 seconds   0.0.0.0:8080->8080/tcp               gacha-api_app
+
+=== * 作成されるDockerイメージ * ===
+$ docker images
+REPOSITORY                           TAG        IMAGE ID       CREATED          SIZE
+gacha-api/app                        gacha-v1   c7d45815b55b   29 seconds ago   13.5MB
+gacha-api/db                         gacha-v1   8c6bc13c1a11   3 days ago       546MB
+
+=== * 作成されるDockerネットワーク * ===
+$ docker network ls
+NETWORK ID     NAME                    DRIVER    SCOPE
+1cd300b2d326   gacha-api_link          bridge    local
 ```
 
 ## 🚧 DevOps Architecture
