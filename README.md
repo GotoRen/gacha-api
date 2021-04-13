@@ -17,14 +17,13 @@ $ npm run start
 ### Backend
 ```
 << Env files. >>
-### api/app
-$ cp .env{.sample,}
-### api/db
-$ cp .env.db{.sample,}
+### api
+$ cp api/.env{.sample,}
+
+### db
+$ cp db/.env.db{.sample,}
 ```
 Please rewrite ".env" and ".env.db" as needed.
-
-
 
 ## 🌱 API EndPoint
 ```zsh
