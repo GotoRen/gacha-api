@@ -2,7 +2,6 @@ COMPOSE=docker-compose
 UP=$(COMPOSE) up -d
 BUILD=$(COMPOSE) build --no-cache
 EXEC=$(COMPOSE) exec
-DB=$(EXEC)
 LOGS=$(COMPOSE) logs -f
 APP=app
 DB=db
@@ -21,13 +20,13 @@ stop: ## docker stop
 down: ## docker down
 	$(COMPOSE) down
 
-app: ## app container sh
+app/api: ## app container sh
 	$(EXEC) $(APP) sh
 
-db: ## db container bash
+app/db: ## db container bash
 	$(EXEC) $(DB) bash
 
-db/mysql: ## db(MySQL) container's MySQL access
+mysql: ## db(MySQL) container's MySQL access
 	$(EXEC) $(DB) mysql --defaults-extra-file=/home/access.cnf
 
 logs: ## docker logs 

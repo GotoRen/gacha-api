@@ -1,0 +1,41 @@
+version: "3.5"
+
+services:
+  app:
+    container_name: gacha-api_app
+    image: gacha-api/app:gacha-v1
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/app
+    env_file:
+      - ./api/.env
+    networks: 
+      - container-link
+  db:
+    container_name: gacha-api_db
+    image: gacha-api/db:gacha-v1
+    build:
+      context: ./db
+      dockerfile: ./Dockerfile
+    ports:
+      - 13306:3306
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./db/init.d:/docker-entrypoint-initdb.d
+      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./db/access.cnf:/home/access.cnf
+    env_file:
+      - ./db/.env.db
+    networks: 
+      - container-link
+
+networks:
+  default:
+    external:
+      name: bridge
+  container-link:
+    name: gacha-api_link

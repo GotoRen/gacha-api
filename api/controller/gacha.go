@@ -7,8 +7,8 @@ import (
 	"math"
 	"math/rand"
 	"net/http"
-	"time"
 	"strconv"
+	"time"
 
 	"github.com/fumist23/game-api/database"
 	"github.com/fumist23/game-api/model"
@@ -93,13 +93,13 @@ func DrawGacha(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method != http.MethodGet {
 		log.Printf("only GET methods are permitted")
-        w.WriteHeader(http.StatusMethodNotAllowed)
-        return
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		return
 	}
-	
+
 	// body := r.Body
 	// defer body.Close()
-	
+
 	// ガチャを引く回数
 	// var gachaDrawRequest model.GachaDrawRequest
 	// if err := json.NewDecoder(body).Decode(&gachaDrawRequest); err != nil {
