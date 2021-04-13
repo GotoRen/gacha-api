@@ -20,7 +20,7 @@ func CreateUser(ctx context.Context, name string, token string) error {
 
 // idとnameを受け取って該当するuserのtokenを取り出す
 func GetToken(ctx context.Context, id int, name string) (model.User, error) {
-	row := DB.QueryRowContext(ctx, "SELECT token FROM users WHERE id=? AND name=?", id, name) 
+	row := DB.QueryRowContext(ctx, "SELECT token FROM users WHERE id=? AND name=?", id, name)
 	var user model.User
 	if err := row.Scan(&user.Token); err != nil {
 		log.Print("failed to get user token from database")
