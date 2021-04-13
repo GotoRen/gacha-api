@@ -32,14 +32,13 @@ Please rewrite ".env" and ".env.db" as needed.
 $ curl -X POST "Content-Type: application/json" -d '{"name": "KobaFumi"}'  localhost:8080/user/create
 
 ### /user/login
-$ curl -X POST -H "Content-Type: application/json" -d '{"id":1, "name":"fumifumi"}' localhost:8080/user/login
+$ curl -X POST -H "Content-Type: application/json" -d '{"id":1, "name":"RenGoto"}' localhost:8080/user/login
 
 ### /user/get
-$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" -d '{"id": "1"}' localhost:8080/user/get
 $ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/user/get
 
 ### /user/update
-$ curl -X PUT -H "x-token: abc" -H "Content-Type: application/json" -d '{"name" : "KobayashiFumiaki"}' localhost:8080/user/update
+$ curl -X PUT -H "x-token: abc" -H "Content-Type: application/json" -d '{"name" : "KobaKoba"}' localhost:8080/user/update
 
 ### /gacha/draw
 $ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" 'localhost:8080/gacha/draw?count=10'
