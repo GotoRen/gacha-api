@@ -16,11 +16,6 @@ import (
 
 // 指定された回数分、ランダムにキャラクターを返す
 func getRandomCharacters(ctx context.Context, count int) ([]model.Character, error) {
-	// if r.Method != http.MethodGet {
-	// 	log.Printf("only GET methods are permitted")
-	//     w.WriteHeader(http.StatusMethodNotAllowed)
-	//     return
-	// }
 	// 対象となるキャラクターの取得
 	characters, err := database.GetCharacters(ctx)
 	if err != nil {
