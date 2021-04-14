@@ -3,7 +3,6 @@
     <v-row justify="center" align="center">
       <v-col cols="12" sm="8" md="6">
         <p>{{ result }}</p>
-         <v-text-field label="ガチャ回数" outlined v-model.number="num"/>
          <v-subheader>ガチャ回数</v-subheader>
          <v-slider
             v-model.number="num"
@@ -13,15 +12,14 @@
           <template v-slot:append>
             <v-text-field
               v-model.number="num"
-              class="mt-0 pt-0"
               type="number"
-              style="width: 60px"
+              outlined
             ></v-text-field>
           </template>
         </v-slider>
         <v-btn @click="sendGachaRequest">ガチャを引く</v-btn>
         <ul>
-          <li v-for="item in result">
+          <li v-for="(item, index) in result" :key="index">
             {{ item.reality }} {{ item.name }}
           </li>
         </ul>
