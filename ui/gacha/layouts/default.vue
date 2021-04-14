@@ -16,6 +16,14 @@
       </v-btn>
       <v-btn
         v-if=$store.state.login
+        color="secondary"
+        dark
+        @click.stop="getCharacterList();listDialog = true;"
+      >
+        所持リスト
+      </v-btn>
+      <v-btn
+        v-if=$store.state.login
         color="primary"
         dark
         @click.stop="userDialog = true"
@@ -149,6 +157,26 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
+      <v-dialog
+      v-model="listDialog"
+      max-width="600px"
+      >
+        <v-card>
+          <v-card-title>
+            <span class="headline">CharacterList</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col cols="12">
+                  リスト
+                  {{ charaList }}
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -171,11 +199,13 @@ export default {
       id: 0,
       username: '',
       token: '',
+      charaList: [],
       fixed: false,
       title: 'gacha-api',
       loginDialog: false,
       signupDialog: false,
-      userDialog: false
+      userDialog: false,
+      listDialog: false
     }
   },
   methods: {
@@ -188,6 +218,8 @@ export default {
       }).then(response => {
         this.username = response;
         console.log(this.username);
+      }).catch(err => {
+        console.log(err);
       });
     },
     async loginRequest() {
@@ -206,7 +238,8 @@ export default {
           username: this.username,
           token: this.token
         });
-        console.log(this.token);
+      }).catch(err => {
+        console.log(err);
       });
     },
     async updateUserName() {
@@ -223,7 +256,8 @@ export default {
           username: this.username,
           token: this.token
         });
-        console.log(this.token);
+      }).catch(err => {
+        console.log(err);
       });
     },
     // async userCreateRequest() {
@@ -248,6 +282,18 @@ export default {
     // },
     userCreateRequest() {
       console.log('apiが未完成です')
+    },
+    async getCharacterList() {
+      await this.$axios.$get('http://localhost:8080/character/list',{
+        headers: {
+          'x-token':this.$store.state.token,
+          'Content-Type':'application/json'
+        }
+      }).then(response => {
+        this.charaList = response;
+      }).catch(err => {
+        console.log(err);
+      });
     },
     logout() {
       this.id = 0;

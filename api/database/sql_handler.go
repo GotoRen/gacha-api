@@ -125,7 +125,7 @@ func GetCharacter(ctx context.Context, characterId int) (model.Character, error)
 // ユーザーが引いたキャラクターをDBに保存する
 func PostUserCharacters(ctx context.Context, selectedCharacters []model.Character, userId int) error {
 	for _, selectedCharacter := range selectedCharacters {
-		if _, err := DB.QueryContext(ctx, "INSERT INTO userCharacters(userId, characterId) VALUES(?, ?)", userId, selectedCharacter.ID); err != nil {
+		if _, err := DB.QueryContext(ctx, "INSERT INTO user_characters(userId, characterId) VALUES(?, ?)", userId, selectedCharacter.ID); err != nil {
 			return err
 		}
 	}
@@ -133,7 +133,7 @@ func PostUserCharacters(ctx context.Context, selectedCharacters []model.Characte
 }
 
 func GetUserCharactersByID(ctx context.Context, userId int) ([]model.UserCharacter, error) {
-	rows, err := DB.QueryContext(ctx, "SELECT user_characters.id, user_characters.characterId, characters.name FROM user_characters WHERE userId = ? INNER JOIN characters ON user_characters.characterId = characters.id", userId)
+	rows, err := DB.QueryContext(ctx, "SELECT user_characters.id, user_characters.characterId, characters.name FROM user_characters INNER JOIN characters ON user_characters.characterId = characters.id WHERE userId = ? ", userId)
 	if err != nil {
 		return nil, err
 	}

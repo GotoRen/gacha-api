@@ -50,7 +50,6 @@ export default {
         },
       }).then(response => {
         this.result=response;
-        console.log(this.result);
       }).catch(err => {
         console.log(err);
       });
