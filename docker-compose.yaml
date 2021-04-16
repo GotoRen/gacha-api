@@ -3,7 +3,7 @@ version: "3.5"
 services:
   app:
     container_name: gacha-api_app
-    image: gacha-api/app:gacha-v1
+    image: gacha-api/app
     build:
       context: ./api
       dockerfile: ./Dockerfile
@@ -17,7 +17,6 @@ services:
       - container-link
   db:
     container_name: gacha-api_db
-    image: gacha-api/db:gacha-v1
     build:
       context: ./db
       dockerfile: ./Dockerfile
