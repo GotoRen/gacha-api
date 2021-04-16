@@ -169,8 +169,12 @@
             <v-container>
               <v-row>
                 <v-col cols="12">
-                  リスト
-                  {{ charaList }}
+                  <v-data-table
+                    :headers="headers"
+                    :items="charaList"
+                    hide-default-footer
+                    class="elevation-1"
+                  ></v-data-table>
                 </v-col>
               </v-row>
             </v-container>
@@ -196,6 +200,16 @@
 export default {
   data () {
     return {
+      headers: [
+        {
+          text: '名前',
+          align: 'start',
+          sortable: false,
+          value: 'name',
+        },
+        { text: 'レアリティ', value: 'reality' },
+        { text: '合計', value: 'sum' },
+      ],
       id: 0,
       username: '',
       token: '',
@@ -217,7 +231,6 @@ export default {
         }
       }).then(response => {
         this.username = response;
-        console.log(this.username);
       }).catch(err => {
         console.log(err);
       });
