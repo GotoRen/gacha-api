@@ -20,8 +20,8 @@
         <v-data-table
           :headers="headers"
           :items="indexedItems"
+          :items-per-page="num"
           hide-default-footer
-          class="elevation-1"
           item-key="index"
         ></v-data-table>
       </v-col>
