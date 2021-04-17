@@ -42,7 +42,7 @@ export default {
   // CORS Countermeasures
   proxy: {
     '/api': {
-      target: 'http://localhost:8080',
+      target: process.env.NUXT_APP_API_ENDPOINT,
     },
   },
 
