@@ -4,7 +4,7 @@ This repository is TechTrain mission Golang GachaAPI.<br>
 It can be run locally with docker-compose.<br>
 The production will be operated using AWS ECS, AWS RDS (Aurora), etc...
 
-## 🍗 Programming Languages
+## 🍗 Tools
 <img src="https://user-images.githubusercontent.com/63791288/115119567-03cc1b80-9fe4-11eb-98ff-710eec204c38.png" width="90" alt="nuxt" border="1">&emsp;<img src="https://user-images.githubusercontent.com/63791288/115119363-ecd8f980-9fe2-11eb-8020-6cc362ea51b0.png" width="150" alt="go" border="1">&emsp;<img src="https://user-images.githubusercontent.com/63791288/115120539-f49b9c80-9fe8-11eb-8093-5639819f6bb2.png" width="75" alt="docker" border="1">&emsp;<img src="https://user-images.githubusercontent.com/63791288/115119119-c5cdf800-9fe1-11eb-8098-47544029987c.png" width="105" alt="aws" border="1">
 
 ## 🌍 Requirements
