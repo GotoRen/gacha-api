@@ -4,6 +4,16 @@ This repository is TechTrain mission Golang GachaAPI.<br>
 It can be run locally with docker-compose.<br>
 The production will be operated using AWS ECS, AWS RDS (Aurora), etc...
 
+## 🌍 Requirements
+| 言語/フレームワーク | バージョン |
+| :---: | :---: |
+| Vue.js | 2.9.6 |
+| Golang | 1.15 |
+| MySQL | 8.0.23 |
+| Python | 3.9.0 |
+| Docker | 20.10.5 |
+| docker-compose | 1.29.0 |
+
 ## 🚀 Running
 You run the following command.
 ### Frontend
@@ -28,22 +38,25 @@ Please rewrite ".env" and ".env.db" as needed.
 ## 🌱 API EndPoint
 ```zsh
 ### /user/create
-$ curl -X POST "Content-Type: application/json" -d '{"name": "KobaFumi"}'  localhost:8080/user/create
+$ curl -X POST "Content-Type: application/json" -d '{"name": "KobaFumi"}' localhost:8080/api/user/create
 
 ### /user/login
-$ curl -X POST -H "Content-Type: application/json" -d '{"id":1, "name":"RenGoto"}' localhost:8080/user/login
+$ curl -X POST -H "Content-Type: application/json" -d '{"id":1, "name":"RenGoto"}' localhost:8080/api/user/login
 
 ### /user/get
-$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/user/get
+$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/api/user/get
 
 ### /user/update
-$ curl -X PUT -H "x-token: abc" -H "Content-Type: application/json" -d '{"name" : "KobaKoba"}' localhost:8080/user/update
+$ curl -X PUT -H "x-token: abc" -H "Content-Type: application/json" -d '{"name" : "KobaKoba"}' localhost:8080/api/user/update
 
 ### /gacha/draw
-$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" 'localhost:8080/gacha/draw?count=10'
+$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" 'localhost:8080/api/gacha/draw?count=10'
 
 ### /character/list
-$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/character/list
+$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/api/character/list
+
+### /api/check
+$ curl localhost:8080/api/check -v
 ```
 
 ## 🦆 Init DB env
@@ -122,4 +135,3 @@ de4ec0aef8b7   gacha-api_link   bridge    local
 
 ## 🚧 DevOps Architecture
 ![architecture](https://user-images.githubusercontent.com/63791288/113522998-0c822200-95e0-11eb-851a-ee61c69076f1.png)
-
