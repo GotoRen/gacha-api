@@ -7,8 +7,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/fumist23/game-api/database"
-	"github.com/fumist23/game-api/model"
+	"github.com/GotoRen/gacha-api/api/database"
+	"github.com/GotoRen/gacha-api/api/model"
 )
 
 // /user/createに対するハンドラ
@@ -21,9 +21,9 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method != http.MethodPost {
 		log.Printf("only POST methods are permitted")
-        w.WriteHeader(http.StatusMethodNotAllowed)
-        return
-    }
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		return
+	}
 
 	var userCreateRequest model.UserCreateRequest
 	if err := json.NewDecoder(body).Decode(&userCreateRequest); err != nil {
@@ -72,9 +72,9 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method != http.MethodPost {
 		log.Printf("only POST methods are permitted")
-        w.WriteHeader(http.StatusMethodNotAllowed)
-        return
-    }
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		return
+	}
 
 	var userLoginRequest model.UserLoginRequest
 	if err := json.NewDecoder(body).Decode(&userLoginRequest); err != nil {
@@ -109,9 +109,9 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method != http.MethodGet {
 		log.Printf("only GET methods are permitted")
-        w.WriteHeader(http.StatusMethodNotAllowed)
-        return
-    }
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		return
+	}
 
 	token := r.Header.Get("x-token")
 	if token == "" {
@@ -143,9 +143,9 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method != http.MethodPut {
 		log.Printf("only PUT methods are permitted")
-        w.WriteHeader(http.StatusMethodNotAllowed)
-        return
-    }
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		return
+	}
 
 	token := r.Header.Get("x-token")
 	isValidToken := database.VerifyToken(ctx, token)
