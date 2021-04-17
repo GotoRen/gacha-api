@@ -20,9 +20,9 @@ You run the following command.
 ```
 << Nuxt.js >>
 ### ui/gacha
-$ npm install
-$ npm run build
-$ npm run start
+$ yarn install
+$ yarn build
+$ yarn start
 ```
 ### Backend
 ```
@@ -32,6 +32,9 @@ $ cp api/.env{.sample,}
 
 ### db
 $ cp db/.env.db{.sample,}
+
+### ui
+$ cp ui/gacha/.env{.sample,}
 ```
 Please rewrite ".env" and ".env.db" as needed.
 
