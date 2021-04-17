@@ -104,20 +104,20 @@ $ docker-compose logs -f db
 ### 確認
 === * 起動するDockerコンテナ * ===
 $ docker ps
-CONTAINER ID   IMAGE                    COMMAND                  CREATED         STATUS         PORTS                                NAMES
-2c03853063ec   gacha-api/db:gacha-v1    "docker-entrypoint.s…"   7 seconds ago   Up 1 second    33060/tcp, 0.0.0.0:13306->3306/tcp   gacha-api_db
-cfc8a77dd2de   gacha-api/app:gacha-v1   "./main"                 7 seconds ago   Up 3 seconds   0.0.0.0:8080->8080/tcp               gacha-api_app
+CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS          PORTS                                NAMES
+ea5ca2f50bf2   gacha-api_db    "docker-entrypoint.s…"   58 seconds ago   Up 53 seconds   33060/tcp, 0.0.0.0:13306->3306/tcp   gacha-api_db
+fa3719719d37   gacha-api/app   "./main"                 58 seconds ago   Up 54 seconds   0.0.0.0:8080->8080/tcp               gacha-api_app
 
 === * 作成されるDockerイメージ * ===
 $ docker images
-REPOSITORY                           TAG        IMAGE ID       CREATED          SIZE
-gacha-api/app                        gacha-v1   c7d45815b55b   29 seconds ago   13.5MB
-gacha-api/db                         gacha-v1   8c6bc13c1a11   3 days ago       546MB
+REPOSITORY                           TAG        IMAGE ID       CREATED         SIZE
+gacha-api/app                        latest     e58639cff39e   2 minutes ago   13.5MB
+gacha-api_db                         latest     8c6bc13c1a11   6 days ago      546MB
 
 === * 作成されるDockerネットワーク * ===
 $ docker network ls
-NETWORK ID     NAME                    DRIVER    SCOPE
-1cd300b2d326   gacha-api_link          bridge    local
+NETWORK ID     NAME             DRIVER    SCOPE
+de4ec0aef8b7   gacha-api_link   bridge    local
 ```
 
 ## 🚧 DevOps Architecture
