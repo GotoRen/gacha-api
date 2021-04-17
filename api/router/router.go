@@ -9,13 +9,13 @@ import (
 func Router() *http.ServeMux {
 
 	r := http.NewServeMux()
-	r.HandleFunc("/user/create", controller.CreateUser)
-	r.HandleFunc("/user/get", controller.GetUser)
-	r.HandleFunc("/user/login", controller.LoginUser)
-	r.HandleFunc("/user/update", controller.UpdateUser)
-	r.HandleFunc("/gacha/draw", controller.DrawGacha)
-	r.HandleFunc("/character/list", controller.GetUserCharacters)
-	r.HandleFunc("/check", controller.Check)
+	r.HandleFunc("/api/user/create", controller.CreateUser)
+	r.HandleFunc("/api/user/get", controller.GetUser)
+	r.HandleFunc("/api/user/login", controller.LoginUser)
+	r.HandleFunc("/api/user/update", controller.UpdateUser)
+	r.HandleFunc("/api/gacha/draw", controller.DrawGacha)
+	r.HandleFunc("/api/character/list", controller.GetUserCharacters)
+	r.HandleFunc("/api/check", controller.Check)
 
 	return r
 }
