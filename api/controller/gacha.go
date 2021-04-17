@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/fumist23/game-api/database"
-	"github.com/fumist23/game-api/model"
+	"github.com/GotoRen/gacha-api/api/database"
+	"github.com/GotoRen/gacha-api/api/model"
 )
 
 // 指定された回数分、ランダムにキャラクターを返す

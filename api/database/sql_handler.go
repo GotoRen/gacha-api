@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	"github.com/fumist23/game-api/model"
+	"github.com/GotoRen/gacha-api/api/model"
 )
 
 // nameとtokenを受け取って保存する

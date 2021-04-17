@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/fumist23/game-api/database"
+	"github.com/GotoRen/gacha-api/api/database"
 )
 
 func GetUserCharacters(w http.ResponseWriter, r *http.Request) {

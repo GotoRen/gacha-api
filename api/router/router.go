@@ -3,7 +3,7 @@ package router
 import (
 	"net/http"
 
-	"github.com/fumist23/game-api/controller"
+	"github.com/GotoRen/gacha-api/api/controller"
 )
 
 func Router() *http.ServeMux {
