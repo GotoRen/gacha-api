@@ -36,7 +36,15 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
   ],
+
+  // CORS Countermeasures
+  proxy: {
+    '/api': {
+      target: process.env.NUXT_APP_API_ENDPOINT,
+    },
+  },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {

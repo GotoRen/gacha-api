@@ -180,7 +180,7 @@ export default {
   },
   methods: {
     async userGetRequest() {
-      await this.$axios.$get('http://localhost:8080/user/get',{
+      await this.$axios.$get('/api/user/get',{
         headers: { 
           'x-token':'abc',
           'Content-Type':'application/json'
@@ -191,7 +191,7 @@ export default {
       });
     },
     async loginRequest() {
-      await this.$axios.$post('http://localhost:8080/user/login',{
+      await this.$axios.$post('/api/user/login',{
         'id':Number(this.id),
         'name':this.username
       },{
@@ -210,7 +210,7 @@ export default {
       });
     },
     async updateUserName() {
-      await this.$axios.$put('http://localhost:8080/user/update',{
+      await this.$axios.$put('/api/user/update',{
         'name':this.username
       },{
         headers: {
@@ -227,7 +227,7 @@ export default {
       });
     },
     // async userCreateRequest() {
-    //   await this.$axios.$post('http://localhost:8080/user/create',{
+    //   await this.$axios.$post('/api/user/create',{
     //     headers: {
     //       'Content-Type':'application/json'
     //     },

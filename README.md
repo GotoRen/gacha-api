@@ -4,46 +4,71 @@ This repository is TechTrain mission Golang GachaAPI.<br>
 It can be run locally with docker-compose.<br>
 The production will be operated using AWS ECS, AWS RDS (Aurora), etc...
 
+## 🍗 Tools
+<img src="https://user-images.githubusercontent.com/63791288/115119567-03cc1b80-9fe4-11eb-98ff-710eec204c38.png" width="90" alt="nuxt" border="1">&emsp;<img src="https://user-images.githubusercontent.com/63791288/115119363-ecd8f980-9fe2-11eb-8020-6cc362ea51b0.png" width="150" alt="go" border="1">&emsp;<img src="https://user-images.githubusercontent.com/63791288/115120539-f49b9c80-9fe8-11eb-8093-5639819f6bb2.png" width="75" alt="docker" border="1">&emsp;<img src="https://user-images.githubusercontent.com/63791288/115119119-c5cdf800-9fe1-11eb-8098-47544029987c.png" width="105" alt="aws" border="1">
+
+## 🌍 Requirements
+| 言語/フレームワーク | バージョン |
+| :---: | :---: |
+| Vue.js | 2.9.6 |
+| Golang | 1.15 |
+| MySQL | 8.0.23 |
+| Python | 3.9.0 |
+| Docker | 20.10.5 |
+| docker-compose | 1.29.0 |
+
 ## 🚀 Running
 You run the following command.
-### Frontend
+### Environment Files
 ```
-<< Nuxt.js >>
-### ui/gacha
-$ npm install
-$ npm run build
-$ npm run start
-```
-### Backend
-```
-<< Env files. >>
 ### api
 $ cp api/.env{.sample,}
 
 ### db
 $ cp db/.env.db{.sample,}
+
+### ui
+$ cp ui/gacha/.env{.sample,}
 ```
-Please rewrite ".env" and ".env.db" as needed.
+&emsp;&emsp;Please rewrite ".env" and ".env.db" as needed.
+
+### Frontend
+```
+### ui/gacha
+$ yarn install
+$ yarn build
+$ yarn start
+```
+
+### Backend
+```
+### ui/gacha
+$ docker-compose build --no-cache
+$ docker-compose up -d
+```
 
 ## 🌱 API EndPoint
 ```zsh
 ### /user/create
-$ curl -X POST "Content-Type: application/json" -d '{"name": "KobaFumi"}'  localhost:8080/user/create
+$ curl -X POST -H "Content-Type: application/json" -d '{"name": "KobaFumi"}' 'localhost:8080/api/user/create'
 
 ### /user/login
-$ curl -X POST -H "Content-Type: application/json" -d '{"id":1, "name":"RenGoto"}' localhost:8080/user/login
+$ curl -X POST -H "Content-Type: application/json" -d '{"id":1, "name":"RenGoto"}' 'localhost:8080/api/user/login'
 
 ### /user/get
-$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/user/get
+$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" 'localhost:8080/api/user/get'
 
 ### /user/update
-$ curl -X PUT -H "x-token: abc" -H "Content-Type: application/json" -d '{"name" : "KobaKoba"}' localhost:8080/user/update
+$ curl -X PUT -H "x-token: abc" -H "Content-Type: application/json" -d '{"name" : "KobaKoba"}' 'localhost:8080/api/user/update'
 
 ### /gacha/draw
-$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" 'localhost:8080/gacha/draw?count=10'
+$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" 'localhost:8080/api/gacha/draw?count=10'
 
 ### /character/list
-$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/character/list
+$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" 'localhost:8080/api/character/list'
+
+### /api/check
+$ curl localhost:8080/api/check -v
 ```
 
 ## 🦆 Init DB env
@@ -122,4 +147,3 @@ de4ec0aef8b7   gacha-api_link   bridge    local
 
 ## 🚧 DevOps Architecture
 ![architecture](https://user-images.githubusercontent.com/63791288/113522998-0c822200-95e0-11eb-851a-ee61c69076f1.png)
-

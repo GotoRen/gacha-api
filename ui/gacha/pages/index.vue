@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     async sendGachaRequest() {
-      await this.$axios.$get('http://localhost:8080/gacha/draw',{
+      await this.$axios.$get('/api/gacha/draw',{
         headers: { 
           'x-token':'abc',
           'Content-Type':'application/json',

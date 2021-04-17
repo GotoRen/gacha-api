@@ -1,30 +1,25 @@
 ### General
 .DS_Store
+data/
+.idea/
+.vscode/
 
 ### Go template
-# Binaries for programs and plugins
+*.out
 *.exe
 *.exe~
 *.dll
 *.so
 *.dylib
-
-# Test binary, built with `go test -c`
 *.test
 
-# Output of the go coverage tool, specifically when used with LiteIDE
-*.out
-.idea
-db/data
-# Dependency directories (remove the comment below to include it)
-
-# vendor/
+### Vendor
 tmp/
 
-### ENV FILES
+### Env files
 .env
 .env.db
 
-### Node.js
-ui/gacha/node_modules/
-ui/gacha/.nuxt/
+### js
+node_modules/
+.nuxt/
