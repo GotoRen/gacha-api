@@ -41,22 +41,22 @@ Please rewrite ".env" and ".env.db" as needed.
 ## 🌱 API EndPoint
 ```zsh
 ### /user/create
-$ curl -X POST "Content-Type: application/json" -d '{"name": "KobaFumi"}' localhost:8080/api/user/create
+$ curl -X POST -H "Content-Type: application/json" -d '{"name": "KobaFumi"}' 'localhost:8080/api/user/create'
 
 ### /user/login
-$ curl -X POST -H "Content-Type: application/json" -d '{"id":1, "name":"RenGoto"}' localhost:8080/api/user/login
+$ curl -X POST -H "Content-Type: application/json" -d '{"id":1, "name":"RenGoto"}' 'localhost:8080/api/user/login'
 
 ### /user/get
-$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/api/user/get
+$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" 'localhost:8080/api/user/get'
 
 ### /user/update
-$ curl -X PUT -H "x-token: abc" -H "Content-Type: application/json" -d '{"name" : "KobaKoba"}' localhost:8080/api/user/update
+$ curl -X PUT -H "x-token: abc" -H "Content-Type: application/json" -d '{"name" : "KobaKoba"}' 'localhost:8080/api/user/update'
 
 ### /gacha/draw
 $ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" 'localhost:8080/api/gacha/draw?count=10'
 
 ### /character/list
-$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" localhost:8080/api/character/list
+$ curl -X GET -H "x-token: abc" -H "Content-Type: application/json" 'localhost:8080/api/character/list'
 
 ### /api/check
 $ curl localhost:8080/api/check -v
