@@ -159,7 +159,7 @@ func GetUserCharactersByID(ctx context.Context, userId int) ([]model.UserCharact
 }
 
 func GetUserCountedCharactersByID(ctx context.Context, userId int) ([]model.UserPossessionCharacter, error) {
-	rows, err := DB.QueryContext(ctx, "SELECT user_characters.characterId, characters.reality, characters.name, COUNT(user_characters.characterId) AS sum From user_characters  INNER JOIN characters ON user_characters.characterId = characters.id WHERE userId = ? GROUP BY characterId ", userId)
+	rows, err := DB.QueryContext(ctx, "SELECT user_characters.characterId, characters.reality, characters.name, COUNT(user_characters.characterId) AS count From user_characters  INNER JOIN characters ON user_characters.characterId = characters.id WHERE userId = ? GROUP BY characterId ", userId)
 	if err != nil {
 		return nil, err
 	}
@@ -169,7 +169,7 @@ func GetUserCountedCharactersByID(ctx context.Context, userId int) ([]model.User
 
 	for rows.Next() {
 		var userCharacter model.UserPossessionCharacter
-		err := rows.Scan(&userCharacter.CharacterID, &userCharacter.CharacterReality, &userCharacter.CharacterName, &userCharacter.CharacterSum)
+		err := rows.Scan(&userCharacter.CharacterID, &userCharacter.CharacterReality, &userCharacter.CharacterName, &userCharacter.CharacterCount)
 		if err != nil {
 			return nil, err
 		}

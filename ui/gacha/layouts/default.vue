@@ -208,7 +208,7 @@ export default {
           value: 'name',
         },
         { text: 'レアリティ', value: 'reality' },
-        { text: '合計', value: 'sum' },
+        { text: '合計', value: 'count' },
       ],
       id: 0,
       username: '',

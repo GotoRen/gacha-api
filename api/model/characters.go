@@ -16,5 +16,5 @@ type UserPossessionCharacter struct {
 	CharacterID     int    `json:"id"`
 	CharacterReality int   `json:"reality"`
 	CharacterName   string `json:"name"`
-	CharacterSum	int	   `json:"sum"`
+	CharacterCount	int	   `json:"count"`
 }
