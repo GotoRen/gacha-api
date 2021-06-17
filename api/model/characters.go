@@ -11,3 +11,10 @@ type UserCharacter struct {
 	CharacterID     int    `json:"characterId"`
 	CharacterName   string `json:"characterName"`
 }
+
+type UserPossessionCharacter struct {
+	CharacterID     int    `json:"id"`
+	CharacterReality int   `json:"reality"`
+	CharacterName   string `json:"name"`
+	CharacterCount	int	   `json:"count"`
+}

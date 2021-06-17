@@ -125,7 +125,7 @@ func GetCharacter(ctx context.Context, characterId int) (model.Character, error)
 // ユーザーが引いたキャラクターをDBに保存する
 func PostUserCharacters(ctx context.Context, selectedCharacters []model.Character, userId int) error {
 	for _, selectedCharacter := range selectedCharacters {
-		if _, err := DB.QueryContext(ctx, "INSERT INTO userCharacters(userId, characterId) VALUES(?, ?)", userId, selectedCharacter.ID); err != nil {
+		if _, err := DB.QueryContext(ctx, "INSERT INTO user_characters(userId, characterId) VALUES(?, ?)", userId, selectedCharacter.ID); err != nil {
 			return err
 		}
 	}
@@ -133,7 +133,7 @@ func PostUserCharacters(ctx context.Context, selectedCharacters []model.Characte
 }
 
 func GetUserCharactersByID(ctx context.Context, userId int) ([]model.UserCharacter, error) {
-	rows, err := DB.QueryContext(ctx, "SELECT user_characters.id, user_characters.characterId, characters.name FROM user_characters WHERE userId = ? INNER JOIN characters ON user_characters.characterId = characters.id", userId)
+	rows, err := DB.QueryContext(ctx, "SELECT user_characters.id, user_characters.characterId, characters.name FROM user_characters INNER JOIN characters ON user_characters.characterId = characters.id WHERE userId = ? ", userId)
 	if err != nil {
 		return nil, err
 	}
@@ -144,6 +144,32 @@ func GetUserCharactersByID(ctx context.Context, userId int) ([]model.UserCharact
 	for rows.Next() {
 		var userCharacter model.UserCharacter
 		err := rows.Scan(&userCharacter.UserCharacterID, &userCharacter.CharacterID, &userCharacter.CharacterName)
+		if err != nil {
+			return nil, err
+		}
+		userCharacters = append(userCharacters, userCharacter)
+		log.Printf("userCharacters: %v", userCharacters)
+	}
+
+	if err := rows.Err(); err != nil {
+		return userCharacters, err
+	}
+
+	return userCharacters, nil
+}
+
+func GetUserCountedCharactersByID(ctx context.Context, userId int) ([]model.UserPossessionCharacter, error) {
+	rows, err := DB.QueryContext(ctx, "SELECT user_characters.characterId, characters.reality, characters.name, COUNT(user_characters.characterId) AS count From user_characters  INNER JOIN characters ON user_characters.characterId = characters.id WHERE userId = ? GROUP BY characterId ", userId)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	userCharacters := make([]model.UserPossessionCharacter, 0)
+
+	for rows.Next() {
+		var userCharacter model.UserPossessionCharacter
+		err := rows.Scan(&userCharacter.CharacterID, &userCharacter.CharacterReality, &userCharacter.CharacterName, &userCharacter.CharacterCount)
 		if err != nil {
 			return nil, err
 		}

@@ -1,0 +1,36 @@
+version: "3.5"
+
+services:
+  jbook_jst:
+    container_name: jupyternotebook_jst
+    image: jupyternotebook_jst
+    build: 
+      context: jst
+      dockerfile: ./Dockerfile
+    ports:
+      - 8888:8888
+    volumes:
+      - "./jst/work_jst:/home/jovyan/work_jst"
+    environment:
+      TZ: Asia/Tokyo
+    networks: 
+      - container-link
+  jbook_utc:
+    container_name: jupyternotebook_utc
+    image: jupyternotebook_utc
+    build: 
+      context: utc
+      dockerfile: ./Dockerfile
+    ports:
+      - 8889:8889
+    volumes:
+      - "./utc/work_utc:/home/jovyan/work_utc"
+    networks: 
+      - container-link
+
+networks:
+  default:
+    external:
+      name: bridge
+  container-link:
+    name: jupyternotebook_link

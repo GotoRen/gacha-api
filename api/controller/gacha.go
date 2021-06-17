@@ -143,7 +143,7 @@ func DrawGacha(w http.ResponseWriter, r *http.Request) {
 	// 取得したキャラクターをuserCharacterテーブルに入れる
 	if err := database.PostUserCharacters(ctx, selectedCharacters, user.Id); err != nil {
 		log.Printf("failed to PostUserCharacters: %v", err)
-		// w.WriteHeader(http.StatusInternalServerError)
+		w.WriteHeader(http.StatusInternalServerError)
 	}
 
 	log.Println("database.PostUserCharacters", err)

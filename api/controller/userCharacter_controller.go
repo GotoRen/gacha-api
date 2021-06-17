@@ -25,7 +25,8 @@ func GetUserCharacters(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 	}
 
-	userCharacters, err := database.GetUserCharactersByID(ctx, user.Id)
+	// userCharacters, err := database.GetUserCharactersByID(ctx, user.Id)
+	userCharacters, err := database.GetUserCountedCharactersByID(ctx, user.Id)
 	if err != nil {
 		log.Printf("failed to get userCharacters: %v", err)
 		w.WriteHeader(http.StatusInternalServerError)
