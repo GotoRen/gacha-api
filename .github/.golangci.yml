@@ -1,0 +1,23 @@
+linters-settings:
+  govet:
+    check-shadowing: true
+  golint:
+    min-confidence: 0
+  funlen:
+    lines: 80
+  misspell:
+    locale: US
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+  lll:
+    line-length: 140
+
+linters:
+  enable-all: true
+
+issues:
+  exclude-use-default: false
+  max-same-issues: 0
+  exclude:
+    - '^(G102|G401|G501):'
