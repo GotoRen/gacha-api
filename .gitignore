@@ -1,4 +1,4 @@
-### https://github.com/github/gitignore/blob/main/Global/macOS.gitignore
+### https://raw.githubusercontent.com/github/gitignore/main/Global/macOS.gitignore
 
 # General
 .DS_Store
@@ -29,7 +29,7 @@ Temporary Items
 
 
 
-### https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
+### https://raw.githubusercontent.com/github/gitignore/main/Global/VisualStudioCode.gitignore
 
 .vscode/
 .vscode/*
@@ -47,7 +47,7 @@ Temporary Items
 
 
 
-### https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+### https://raw.githubusercontent.com/github/gitignore/main/Global/JetBrains.gitignore
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
