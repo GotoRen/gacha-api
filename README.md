@@ -1,7 +1,7 @@
 # 🏃 gacha-api: Deploy the simple API on Amazon Web Services
 
 [![Go](https://github.com/GotoRen/gacha-api/actions/workflows/go.yml/badge.svg)](https://github.com/GotoRen/gacha-api/actions/workflows/go.yml)
-[![Language](https://img.shields.io/badge/Go-1.18.0-blue.svg)](https://github.com/Pluslab/cyphonic)
+[![Language](https://img.shields.io/badge/Go-1.18.0-blue.svg)](https://github.com/GotoRen/gacha-api)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ## Concept of this project
 This project was started to run the gacha API writen by Golang on AWS.<br>
