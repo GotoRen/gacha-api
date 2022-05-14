@@ -1,4 +1,4 @@
-# gacha-api: Deploy the simple API on Amazon Web Services
+# 🏃 gacha-api: Deploy the simple API on Amazon Web Services
 
 [![Go](https://github.com/GotoRen/gacha-api/actions/workflows/go.yml/badge.svg)](https://github.com/GotoRen/gacha-api/actions/workflows/go.yml)
 [![Language](https://img.shields.io/badge/Go-1.18.0-blue.svg)](https://github.com/Pluslab/cyphonic)
