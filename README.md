@@ -9,22 +9,37 @@ Built an API for creating basic applications and designed the infrastructure for
 It can be run locally with docker-compose. The production will be operated using AWS ECS, AWS RDS (Aurora), etc...<br>
 
 ## Overview
-まずは、キャッチアップにあたり、AWSの基本的なサービスを使いこなせるようになるため、一通り触ってどんなサービスなのか特徴を知り、今後の技術選定に活かしていきたいという思いがありました。
-また、キャッチアップだけでなく、12factor-appを意識した設計にしたり、「オートスケール」「負荷分散」「監視・通知」「ログ収集・分析」といった運用に必要な機能を盛り込んで作ったりしていくことを意識しました。
+First, I would like to be able to use basic AWS services as I catch up.<br>
+Then, touching and learning the features of each service, and desire to utilize the technology selection process in the future.<br>
+Additionally, this product is designed with [The Twelve-Factor App](https://12factor.net/) in mind as well as catch-up.<br>
+For example, "auto-scale", "load-balancing", "monitoring and notification", "log-collection and log-analysis".<br>
+Finally, I will actively incorporate technologies in which we are interested.<br>
 
 ## Concept of DevOps architecture
 ![architecture](https://user-images.githubusercontent.com/63791288/113522998-0c822200-95e0-11eb-851a-ee61c69076f1.png)
 
-### CI/CDよるデプロイ
-CIは ワークフローに設定された yaml (run) により、DockerイメージをECRに、イメージ情報をJSONで定義してS3に保存します。また、CDは、CodePipelineを用いてS3をソースとして、ECRからイメージをプルすることでECS上に展開します。
+### Deployment by CI/CD
+![dev.png](https://user-images.githubusercontent.com/63791288/168437418-e4a88f98-888d-4005-b357-98f1ac04a547.png)
+Continuous Integration pushes the Docker image to the ECR via yaml (run) configured in the github workflows.<br>
+Image information is defined in JSON and stored in S3.<br>
+CodePipeline uses S3 as a source and pull image from ECR and deploy to ECS.<br>
+This is typically a continuous deployment.<br>
 
-### イミュータブルなインフラ設計
-耐障害性を考慮し、AZを分けてインスタンスを立て、ALBを設置することでトラフィックを分散します。さらに、より本番環境に近いサービスにするため、Googleドメインで取得したドメイン名をRoute53で付加し、運用を行いました。
-また、Auroraへの接続情報はSystems ManagerのParameterStoreを使用して環境変数を設定し、セキュアに接続可能にしました。
-運用に当たって、CI/CDと組み合わせ、開発者は一度構築したインフラの設定変更は行わないように、イミュータブルなインフラ設計（Immutable Infrastructure）を意識しました。
+### Design of infrastructure
+![ops.png](https://user-images.githubusercontent.com/63791288/168437521-9f775beb-e281-48e2-82ce-0032d699f666.png)
+First, for fault tolerance, set up separate instances in different Availability-Zone and deploy ALB to distribute traffic.<br>
+Additionally, in order to achieve a more production-like service, I used Route53 and added domain names to the operation.<br>
+Connection information to Aurora was set up using Systems Manager's ParameterStore with environment variables to enable secure connections.<br>
+Finally, in conjunction with CI/CD, we were aware of Immutable Infrastructure so as not to change the configuration of the infrastructure once it was built.<br>
+This allows for continuous DevOps even after the start of operations.<br>
 
-### 監視・通知基盤　
-デプロイ時は、CodePipelineのイベントを検知してSNS, Chatbotと組み合わせてSlackに通知します。また、監視として、UptimeRobotを取り入れ、サービス全体を外形監視します。
+### Monitoring and Notification　
+![maintenance.png](https://user-images.githubusercontent.com/63791288/168437532-a7ae8bf1-fd62-48f5-948e-f306f6a133a5.png)
+- Monitoring<br>
+When deployed, the system detects CodePipeline events and notifies Slack in combination with AWS's SNS and AWS's Chatbot.<br>
+Additionally, UptimeRobot is incorporated as a monitoring tool and the entire service is monitored externally.<br>
 
-### ログ分析基盤
-ロギング基盤の部分では通常であれば、Logs Insightsで完結する部分を、様々なサービスを織り交ぜて作ってみたいという思いから、Lambdaを使ってみたり、Kinesis DataFirehoseなどを使用しました。また、取得したログはS3に保存して、Athena（Glue）からクエリをかけられる仕組みを構築しました。
+- Logging<br>
+I used Lambda and Kinesis DataFirehose for logging.<br>
+Typically, this would be completed by Logs Insights. However, I would like to deal with various technologies. This is my concept!<br>
+The acquired logs are stored in S3 and queries are executed from Athena (Glue).<br>
