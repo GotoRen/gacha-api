@@ -43,3 +43,31 @@ Additionally, UptimeRobot is incorporated as a monitoring tool and the entire se
 I used Lambda and Kinesis DataFirehose for logging.<br>
 Typically, this would be completed by Logs Insights. However, I would like to deal with various technologies. This is my concept!<br>
 The acquired logs are stored in S3 and queries are executed from Athena (Glue).<br>
+
+## Requirement
+
+| Language/FrameWork | Version |
+| :------------------ | ---------: |
+| go                  |       1.18 |
+| npm                 |      8.9.0 |
+| python              |      3.9.0 |
+| docker-compose      |      2.5.0 |
+| aws-cli             |      2.7.0 |
+
+## Project managers
+- [Issues](https://github.com/GotoRen/gacha-api/issues)
+- [Pull Request](https://github.com/GotoRen/gacha-api/pulls)
+- [Projects](https://github.com/GotoRen/gacha-api/projects/1)
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at [https://github.com/GotoRen/gacha-api](https://github.com/GotoRen/gacha-api).
+
+This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+## Code of Conduct
+Everyone interacting in this project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](./.github/CODE_OF_CONDUCT.md).
+
+## LICENSE
+
+[MIT License](./LICENSE)
