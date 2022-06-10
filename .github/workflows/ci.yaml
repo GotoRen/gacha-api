@@ -1,0 +1,58 @@
+name: CI for AWS
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - ci-test
+
+jobs:
+  build-and-push:
+    name: Push docker image to ECR
+    runs-on: ubuntu-20.04
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Set GitHubCommitHash to env
+        run: |
+          echo "SHA8=${GITHUB_SHA::8}" >> $GITHUB_ENV
+      
+      - name: Set env Production
+        if: github.ref == 'refs/heads/master'
+        run: |  
+          echo "ECR_REPOSITORY=gacha-production" >> $GITHUB_ENV
+          echo "S3_UPLOAD_BUCKET=gacha-imageinfo-production" >> $GITHUB_ENV
+      
+      - name: Set env Staging
+        #if: github.ref == 'refs/heads/develop'
+        if: github.ref == 'refs/heads/ci-test'
+        run: |  
+          echo "ECR_REPOSITORY=gacha-staging" >> $GITHUB_ENV
+          echo "S3_UPLOAD_BUCKET=gacha-imageinfo-staging" >> $GITHUB_ENV
+      - name: Load to ECR & S3
+        env: 
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          CONTAINER_NAME: api
+        working-directory: api
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$SHA8 .
+          docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$SHA8 $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$SHA8
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          echo '[{"name": "'$CONTAINER_NAME'", "imageUri": "'$ECR_REGISTRY/$ECR_REPOSITORY:$SHA8'"}]' > imagedefinitions.json
+          zip imagedefinitions.json.zip imagedefinitions.json
+          aws s3 cp ./imagedefinitions.json.zip s3://$S3_UPLOAD_BUCKET/ --quiet
+          
